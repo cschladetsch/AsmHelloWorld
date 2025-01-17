@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 # Project name and version
 project(NasmExample VERSION 1.0 LANGUAGES NONE)
+set(EXE_NAME hello)
 
 # Set the output directory for binaries
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -25,15 +26,15 @@ add_custom_command(
 
 # Create a custom target for linking the final executable
 add_custom_target(
-    NasmExample ALL
+    hello ALL
     DEPENDS ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/main.o
-    COMMAND ld -o ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/main ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/main.o
+    COMMAND ld -o ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${EXE_NAME} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/main.o
     COMMENT "Linking executable"
 )
 
 # Mark the executable as an output
 add_custom_command(
-    OUTPUT ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/main
+    OUTPUT ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${EXE_NAME}
     COMMAND true
 )
 
